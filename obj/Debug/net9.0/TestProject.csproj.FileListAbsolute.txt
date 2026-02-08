@@ -1,0 +1,14 @@
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\TestProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\TestProject.AssemblyInfoInputs.cache
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\TestProject.AssemblyInfo.cs
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\TestProject.csproj.CoreCompileInputs.cache
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\bin\Debug\net9.0\TestProject.exe
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\bin\Debug\net9.0\TestProject.deps.json
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\bin\Debug\net9.0\TestProject.runtimeconfig.json
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\bin\Debug\net9.0\TestProject.dll
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\bin\Debug\net9.0\TestProject.pdb
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\TestProject.dll
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\refint\TestProject.dll
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\TestProject.pdb
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\TestProject.genruntimeconfig.cache
+C:\Users\Gabriel\Downloads\CssharpProjects\TestProject\obj\Debug\net9.0\ref\TestProject.dll
