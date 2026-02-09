@@ -1,0 +1,12 @@
+# Directorios de compilación y temporales
+bin/
+obj/
+
+# Archivos de usuario y configuración de IDE
+.vs/
+*.user
+*.suo
+
+# Archivos de sistema
+Thumbs.db
+.DS_Store
