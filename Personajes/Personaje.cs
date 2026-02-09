@@ -19,6 +19,10 @@ namespace jueguito.Personajes
     {
         int dañoFinal = cantidad - (cantidad / 100) * ResistenciaMagica;
         Vida -= dañoFinal;
+        if (Vida < 1)
+            {
+                Vida = 0;
+            }
         Console.WriteLine($"{Nombre} ha recibido {cantidad} de daño magico.");
     }
 
@@ -26,12 +30,16 @@ namespace jueguito.Personajes
     {
         int dañoFinal = cantidad - (cantidad / 100) * Armadura;
         Vida -= dañoFinal;
+        if (Vida < 1)
+            {
+                Vida = 0;
+            }
         Console.WriteLine($"{Nombre} ha recibido {cantidad} de daño Fisico");
     }
 
     public void VidaActual(Personaje objetivo)
     {
-        Console.WriteLine($"A {objetivo} le quedan {Vida} puntos de vida.");
+        Console.WriteLine($"A {objetivo.Nombre} le quedan {objetivo.Vida} puntos de vida.");
     }
 
     public virtual void Atacar(Personaje objetivo)

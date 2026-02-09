@@ -19,27 +19,62 @@ namespace jueguito.Core
             Console.WriteLine("¡Comencemos!");
             Console.ReadLine();
             Console.Clear();
-            List<Personaje> grupoDeHeroes = CrearGrupoDeHeroes();
-            Personaje jefe = SeleccionarJefe();
-            Console.WriteLine("Tu grupo de heroes se conforma por");
-            foreach (Personaje heroeActual in grupoDeHeroes)
+            do
             {
-                Console.WriteLine(heroeActual.Nombre);
-            }
-            Console.WriteLine($"Y han de enfrentarse a {jefe.Nombre}");
+                List<Personaje> grupoDeHeroes = CrearGrupoDeHeroes();
+                Personaje jefe = SeleccionarJefe();
+                Console.WriteLine("Tu grupo de heroes se conforma por");
+                foreach (Personaje heroeActual in grupoDeHeroes)
+                {
+                    Console.WriteLine(heroeActual.Nombre);
+                }
+                Console.WriteLine($"Y han de enfrentarse a {jefe.Nombre}");
+                LoopDeJuego(grupoDeHeroes, jefe);
+            } while (JugarOtraVez());
         }
 
+        public bool JugarOtraVez()
+        {
+            string? readResult;
+            string respuesta = "";
+            Console.WriteLine("Esta partida ha terminado.");
+            Console.WriteLine("¿Deseas jugar otra vez?");
+            Console.WriteLine("(y/n)");
+            do
+            {
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    respuesta = readResult.Trim().ToLower();
+                    if (respuesta == "y" || respuesta == "n")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Por favor responda. \n(y/n)");
+                    }
+                }
+            } while (true);
+            return respuesta switch
+            {
+                "y" => true,
+                "n" => false,
+                _ => throw new Exception("Error")
+            };
+        }
         public void LoopDeJuego(List<Personaje> grupoDeHeroes, Personaje jefe)
         {
             do
             {
-                
+                SeleccionarAccion(grupoDeHeroes, jefe);
+
                 VerificarGrupoDeHeroes(grupoDeHeroes);
                 if (grupoDeHeroes.Count == 0)
                 {
                     break;
                 }
-                if(VerificarJefe(jefe))
+                if (VerificarJefe(jefe))
                 {
                     break;
                 }
@@ -51,7 +86,6 @@ namespace jueguito.Core
         {
             if (jefe.Vida < 1)
             {
-                Console.WriteLine($"Pese a su poder {jefe.Nombre} ha caido derrotado por el grupo de heroes.");
                 return true;
             }
             else
@@ -62,27 +96,44 @@ namespace jueguito.Core
 
         public void SeleccionarAccion(List<Personaje> grupoDeHeroes, Personaje jefe)
         {
-            int j = 9;
-            string? readResult;
+
             Console.WriteLine($"Debes decidir que hacer en este turno, que heroe atacara, y cual intentara recibir el ataque de {jefe.Nombre}");
+
+            Console.WriteLine("¿Quien atacara?");
+            SeleccionarHeroe(grupoDeHeroes).Atacar(jefe);
+            Console.WriteLine($"¿Quien intentara recibir el ataque de {jefe.Nombre}?");
+            jefe.Atacar(SeleccionarHeroe(grupoDeHeroes));
+        }
+
+        public Personaje SeleccionarHeroe(List<Personaje> grupoDeHeroes)
+        {
+            int j;
+            string? readResult;
             do
             {
-            Console.WriteLine("¿Quien atacara?");
-            for(int i = grupoDeHeroes.Count; i >= 0; i--)
-            {
-                Console.WriteLine($"{i}. {grupoDeHeroes[i].Nombre}");
-            }
-            readResult = Console.ReadLine();
-            if(readResult != null)
-            {
-                bool validInput = int.TryParse(readResult.Trim(), out j);
-            
-            }
-            } while(true);
+
+                for (int i = grupoDeHeroes.Count - 1; i >= 0; i--)
+                {
+                    Console.WriteLine($"{i}. {grupoDeHeroes[i].Nombre}");
+                }
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    bool validInput = int.TryParse(readResult.Trim(), out j);
+                    if (validInput && j < grupoDeHeroes.Count && j >= 0)
+                    {
+                        return grupoDeHeroes[j];
+                    }
+                    else
+                    {
+                        Console.WriteLine("Por favor seleccionar uno de los heroes.");
+                    }
+                }
+            } while (true);
         }
         public List<Personaje> VerificarGrupoDeHeroes(List<Personaje> grupoDeHeroes)
         {
-            for (int i = grupoDeHeroes.Count -1;i >= 0; i-- )
+            for (int i = grupoDeHeroes.Count - 1; i >= 0; i--)
             {
                 if (grupoDeHeroes[i].Vida < 1)
                 {
@@ -90,11 +141,11 @@ namespace jueguito.Core
                     grupoDeHeroes.RemoveAt(i);
                 }
             }
-            if(grupoDeHeroes.Count == 0)
+            if (grupoDeHeroes.Count == 0)
             {
                 Console.WriteLine("El grupo de heroes ha sido derrotado.");
             }
-           return grupoDeHeroes;
+            return grupoDeHeroes;
         }
 
 

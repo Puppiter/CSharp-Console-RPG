@@ -4,8 +4,7 @@ using System.Collections.Generic;
 namespace jueguito
 {
     public class Program
-{
-	public static void Main()
+{	public static void Main()
 	{
 		Juego nuevoJuego = new Juego();
         nuevoJuego.IniciarJuego();
