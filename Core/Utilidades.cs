@@ -1,6 +1,6 @@
 namespace jueguito.Core;
 
-    static class Herramientas
+static class Herramientas
 {
     public static void LimpiezaDeConsola()
     {

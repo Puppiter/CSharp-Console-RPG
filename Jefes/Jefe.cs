@@ -1,8 +1,8 @@
 using jueguito.Personajes;
 
-namespace jueguito.Jefes
-{
-    public class JefeAntiguaGorgona : Personaje
+namespace jueguito.Jefes;
+
+public class JefeAntiguaGorgona : Personaje
 {
     public JefeAntiguaGorgona() : base("AntiguaGorgona")
     {
@@ -82,5 +82,3 @@ public class JefeRenacidoReyDeHierro : Personaje
         VidaActual(objetivo);
     }
 }
-}
-
