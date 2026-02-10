@@ -17,7 +17,7 @@ public class InfoClaseAttribute : Attribute
     {
         Nombre = nombre;
         Descripcion = descripcion;
-        Vida = Vida;
+        Vida = vida;
         DañoFisico = dañoFisico;
         DañoMagico = dañoMagico;
         Armadura = armadura;

@@ -21,8 +21,9 @@ public static class Interfaz
         Console.Clear();
         Console.WriteLine("Bienvenido al Juego, en este juego crearas un grupo de 3 heroes para enfrentarte a uno de los temibles jefes.");
         Herramientas.LimpiezaDeConsola();
-        Console.WriteLine("El combate es simple, eliges a uno de los heroes para atacar, y a uno para cubrir.");
-        Console.WriteLine("El jefe a su vez atacara, pero hay una pequeña probabilidad de que ignore a quien elegiste para recibir el golpe, y golpee a otro heroe");
+        Console.WriteLine("En la seleccion de menus debes dar como input el indice numerico de la opcion que quieras seleccionar.");
+        Console.WriteLine("El combate es simple, eliges a uno de los heroes para atacar, y a uno para intentar recibir el ataque del Jefe.");
+        Console.WriteLine("Cada ataque, de heroes o del jefe tiene una pequeña probabilidad de dar un golpe critico.");
         Console.WriteLine("¡Comencemos!");
         Herramientas.LimpiezaDeConsola();
     }
@@ -65,7 +66,7 @@ public static class Interfaz
             {
                 Console.WriteLine($"--- {info.Nombre} ---");
                 Console.WriteLine(info.Descripcion);
-                Console.WriteLine($"Estadisticas:\n Vida={info.Vida}\n Daño Fisico={info.DañoFisico}\n Daño magico={info.DañoMagico}\n Armadura={info.Armadura}\n Resistencia magica={info.Armadura}");
+                Console.WriteLine($"Estadisticas:\n Vida={info.Vida}\n Daño Fisico={info.DañoFisico}\n Daño magico={info.DañoMagico}\n Armadura={info.Armadura}\n Resistencia magica={info.ResistenciaMagica}");
                 Herramientas.LimpiezaDeConsola();
             }
         }
