@@ -15,13 +15,7 @@ public class Juego
 
     public void IniciarJuego()
     {
-        Console.Clear();
-        Console.WriteLine("Bienvenido al Juego, en este juego crearas un grupo de 3 heroes para enfrentarte a uno de los temibles jefes.");
-        Herramientas.LimpiezaDeConsola();
-        Console.WriteLine("El combate es simple, eliges a uno de los heroes para atacar, y a uno para cubrir.");
-        Console.WriteLine("El jefe a su vez atacara, pero hay una pequeña probabilidad de que ignore a quien elegiste para recibir el golpe, y golpee a otro heroe");
-        Console.WriteLine("¡Comencemos!");
-        Herramientas.LimpiezaDeConsola();
+        Interfaz.MensajeDeApertura();
         do
         {
             List<Personaje> grupoDeHeroes = Creadora.CrearGrupoDeHeroes();
