@@ -5,6 +5,7 @@ namespace jueguito.Core;
 using System.Collections.Generic;
 using System.Timers;
 using jueguito.Jefes;
+using jueguito.UI;
 
 public class Juego
 {
@@ -103,7 +104,7 @@ public class Juego
         Console.WriteLine($"Debes decidir que hacer en este turno, que heroe atacara, y cual intentara recibir el ataque de {jefe.Nombre}");
 
         Console.WriteLine("¿Quien atacara?");
-        SeleccionarHeroe(grupoDeHeroes).Atacar(jefe);
+        Ataque(SeleccionarHeroe(grupoDeHeroes), jefe);
         Herramientas.LimpiezaDeConsola();
         if (VerificarJefe(jefe))
         {
@@ -111,7 +112,7 @@ public class Juego
             return;
         }
         Console.WriteLine($"¿Quien intentara recibir el ataque de {jefe.Nombre}?");
-        jefe.Atacar(SeleccionarHeroe(grupoDeHeroes));
+        Ataque(jefe, SeleccionarHeroe(grupoDeHeroes));
         Herramientas.LimpiezaDeConsola();
         grupoDeHeroes = VerificarGrupoDeHeroes(grupoDeHeroes);
     }
@@ -141,6 +142,23 @@ public class Juego
                 }
             }
         } while (true);
+    }
+
+    private void Ataque(Personaje atacante, Personaje objetivo)
+    {
+        int dañoFisico = atacante.DañoFisico;
+        int dañoMagico = atacante.DañoMagico;
+        string mensajeDeAtaque = atacante.DescripcionDeAtaque;
+        if (Random.Shared.Next(0, 100) < 20)
+        {
+            dañoFisico = (atacante.DañoFisico * 150) / 100;
+            dañoMagico = (atacante.DañoMagico * 150) / 100;
+            mensajeDeAtaque = atacante.DescripcionDeAtaqueCritico;
+        }
+        int dañoMagicoFinal = objetivo.RecibirDañoMagico(dañoMagico);
+        int dañoFisicoFinal = objetivo.RecibirDañoFisico(dañoFisico);
+        Interfaz.MensajeDeAtaque(dañoMagicoFinal, dañoFisicoFinal, atacante, objetivo, mensajeDeAtaque);
+
     }
     public List<Personaje> VerificarGrupoDeHeroes(List<Personaje> grupoDeHeroes)
     {

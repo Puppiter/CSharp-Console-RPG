@@ -1,7 +1,5 @@
 ﻿namespace jueguito.Personajes;
 
-
-
 public class Barbaro : Personaje
 {
     public Barbaro(string nombre) : base(nombre)
@@ -12,14 +10,8 @@ public class Barbaro : Personaje
         DañoMagico = 0;
         Armadura = 30;
         ResistenciaMagica = 0;
-    }
-
-    public override void Atacar(Personaje objetivo)
-    {
-        Console.WriteLine($"{Nombre} lanza un ataque brutal con su Hacha de Batalla sobre {objetivo.Nombre}");
-        objetivo.RecibirDañoFisico(DañoFisico);
-        objetivo.RecibirDañoMagico(DañoMagico);
-        VidaActual(objetivo);
+        DescripcionDeAtaque = "lanza un ataque brutal con su Hacha de Batalla sobre";
+        DescripcionDeAtaqueCritico = "entra en un frenesí asesino y descarga un golpe devastador sobre";
     }
 }
 public class Hechicero : Personaje
@@ -32,13 +24,8 @@ public class Hechicero : Personaje
         DañoMagico = 50;
         Armadura = 0;
         ResistenciaMagica = 0;
-    }
-    public override void Atacar(Personaje objetivo)
-    {
-        Console.WriteLine($"{Nombre} castea una poderosa bola de fuego hacia {objetivo.Nombre}");
-        objetivo.RecibirDañoFisico(DañoFisico);
-        objetivo.RecibirDañoMagico(DañoMagico);
-        VidaActual(objetivo);
+        DescripcionDeAtaque = "castea una poderosa bola de fuego hacia";
+        DescripcionDeAtaqueCritico = "canaliza el poder del cosmos en una explosión de energía pura contra";
     }
 }
 public class Paladin : Personaje
@@ -51,13 +38,8 @@ public class Paladin : Personaje
         DañoMagico = 15;
         Armadura = 18;
         ResistenciaMagica = 18;
-    }
-    public override void Atacar(Personaje objetivo)
-    {
-        Console.WriteLine($"{Nombre} arremete con su martillo sacro contra {objetivo.Nombre}");
-        objetivo.RecibirDañoFisico(DañoFisico);
-        objetivo.RecibirDañoMagico(DañoMagico);
-        VidaActual(objetivo);
+        DescripcionDeAtaque = "arremete con su martillo sacro contra";
+        DescripcionDeAtaqueCritico = "invoca la justicia divina y aplasta con un impacto sagrado a";
     }
 }
 public class Vaquero : Personaje
@@ -70,13 +52,8 @@ public class Vaquero : Personaje
         DañoMagico = 0;
         Armadura = 0;
         ResistenciaMagica = 0;
-    }
-    public override void Atacar(Personaje objetivo)
-    {
-        Console.WriteLine($"{Nombre} vacio el cargador de su revolver sobre {objetivo.Nombre}");
-        objetivo.RecibirDañoFisico(DañoFisico);
-        objetivo.RecibirDañoMagico(DañoMagico);
-        VidaActual(objetivo);
+        DescripcionDeAtaque = "vacio el cargador de su revolver sobre";
+        DescripcionDeAtaqueCritico = "ajusta su sombrero y vacía el tambor de su revolver con precisión quirúrgica en";
     }
 }
 public class Valquiria : Personaje
@@ -89,13 +66,8 @@ public class Valquiria : Personaje
         DañoMagico = 35;
         Armadura = 0;
         ResistenciaMagica = 30;
-    }
-    public override void Atacar(Personaje objetivo)
-    {
-        Console.WriteLine($"{Nombre} desata su poder contra {objetivo.Nombre}");
-        objetivo.RecibirDañoFisico(DañoFisico);
-        objetivo.RecibirDañoMagico(DañoMagico);
-        VidaActual(objetivo);
+        DescripcionDeAtaque = "embiste con su lanza a";
+        DescripcionDeAtaqueCritico = "desciende con la furia de los cielos y golpea el alma de";
     }
 }
 
