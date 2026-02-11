@@ -1,5 +1,9 @@
 namespace jueguito.Personajes;
+using jueguito.Core;
+using System.Reflection;
 
+
+[InfoClase("", "",0 ,0, 0, 0, 0)]
 public class Personaje
 {
     public string Nombre { get; set; }
@@ -16,10 +20,16 @@ public class Personaje
     public Personaje(string nombre)
     {
         Nombre = nombre;
-        Vida = 100;
-        Armadura = 0;
-        DañoFisico = 10;
-        ResistenciaMagica = 0;
+        var info = this.GetType().GetCustomAttribute<InfoClaseAttribute>();
+
+        if (info != null) 
+        {
+            this.Vida = info.Vida;
+            this.DañoFisico = info.DañoFisico;
+            this.DañoMagico = info.DañoMagico;
+            this.Armadura = info.Armadura;
+            this.ResistenciaMagica = info.ResistenciaMagica;
+        }
         DescripcionDeAtaque = "Ataca a";
         DescripcionDeAtaqueCritico = "Ataca Fatalmente a";
     }
@@ -27,7 +37,7 @@ public class Personaje
     public int RecibirDañoMagico(int cantidad)
     {
         int dañoFinal = cantidad - (cantidad * ResistenciaMagica) / 100;
-        if (dañoFinal < 1)
+        if (dañoFinal < 0)
         {
             dañoFinal = 1;
         }
@@ -42,7 +52,7 @@ public class Personaje
     public int RecibirDañoFisico(int cantidad)
     {
         int dañoFinal = cantidad - (cantidad * Armadura) / 100;
-        if (dañoFinal < 1)
+        if (dañoFinal < 0)
         {
             dañoFinal = 1;
         }

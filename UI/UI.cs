@@ -16,6 +16,78 @@ public static class Interfaz
         Console.WriteLine($"A {objetivo.Nombre} le quedan {objetivo.Vida} puntos de vida");
     }
 
+    public static string SolicitarNombreDelHeroe()
+    {
+        Console.WriteLine("Escribe el nombre del heroe:");
+        string? entrada = Console.ReadLine();
+        return string.IsNullOrWhiteSpace(entrada) ? "Desconocido" : entrada.Trim();
+    }
+
+    public static int SeleccionarClaseDelJefe()
+    {
+        string? readResult;
+        int i = 0;
+        DesplegarInformacionDeJefes();
+        do
+        {
+            Console.WriteLine("Selecciona el jefe que desees enfrentar:");
+            Console.WriteLine("1. La Antigua Gorgona");
+            Console.WriteLine("2. El Señor de los Gigantes");
+            Console.WriteLine("3. El Renacido Rey del Hierro");
+            readResult = Console.ReadLine();
+            if (readResult != null)
+            {
+                bool validInput = int.TryParse(readResult.Trim(), out i);
+                if (validInput && i < 4 && i > 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    Console.WriteLine("Por favor, elige una de las opciones.");
+                }
+            }
+        } while (true);
+    }
+    public static int SeleccionarClaseDelHeroe()
+    {
+        int i = 0;
+
+        do
+        {
+            Console.WriteLine("Selecciona la clase del heroe");
+            Console.WriteLine("1. Barbaro");
+            Console.WriteLine("2. Hechicero");
+            Console.WriteLine("3. Paladin");
+            Console.WriteLine("4. Vaquero");
+            Console.WriteLine("5. Valquiria");
+
+            string? readResult = Console.ReadLine();
+            if (readResult != null)
+            {
+                bool validInput = int.TryParse(readResult.Trim(), out i);
+                if (validInput)
+                {
+                    if (i > 0 && i < 6)
+                    {
+                        return i;
+                    }
+                    else
+                    {
+                        MensajePorInputIncorrecto();
+                    }
+                }
+                else
+                {
+                    MensajePorInputIncorrecto();
+                }
+            }
+        } while (true);
+    }
+    public static void MensajePorInputIncorrecto()
+    {
+        Console.WriteLine("Por favor, seleccione una de las opciones.");
+    }
     public static void MensajeDeApertura()
     {
         Console.Clear();
