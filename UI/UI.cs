@@ -5,6 +5,8 @@ using jueguito.Jefes;
 
 namespace jueguito.UI;
 
+
+
 public static class Interfaz
 {
 
@@ -25,68 +27,131 @@ public static class Interfaz
 
     public static int SeleccionarClaseDelJefe()
     {
-        string? readResult;
-        int i = 0;
         DesplegarInformacionDeJefes();
+
+        Console.WriteLine("Selecciona el jefe que desees enfrentar:");
+        List<string> listaDeJefes = new List<string> { "La Antigua Gorgona", "El Señor de los Gigantes", "El Renacido Rey del Hierro" };
+        for (int i = 1; i < 4; i++)
+        {
+            Console.WriteLine($"{i}. {listaDeJefes[i - 1]}");
+        }
+        return SeleccionDeOpcion(1, listaDeJefes.Count);
+    }
+
+    public static void MensajeDeHeroeMuerto(Personaje heroe)
+    {
+        Console.WriteLine($"Oh no, {heroe.Nombre} ha caido derrotado.");
+    }
+
+    public static void MensajeDeGrupoDerrotado()
+    {
+        Console.WriteLine("Pese a sus esfuerzos, los heroes han sido derrotados.");
+    }
+
+    public static void MensajeDeJefeDerrotado(Personaje jefe)
+    {
+        Console.WriteLine($"Pese a su poder, {jefe.Nombre} fue derrotado por el grupo de heroes.");
+    }
+
+    public static void MostrarPartyYJefe(List<Personaje> grupoDeHeroes, Personaje jefe)
+    {
+        Console.WriteLine("Tu grupo de heroes se conforma por");
+        foreach (Personaje heroeActual in grupoDeHeroes)
+        {
+            Console.WriteLine(heroeActual.Nombre);
+        }
+        Console.WriteLine($"Y han de enfrentarse a {jefe.Nombre}");
+    }
+
+    public static void TurnoDeAtaque(Personaje jefe)
+    {
+        Console.WriteLine($"Debes decidir que hacer en este turno, que heroe atacara, y cual intentara recibir el ataque de {jefe.Nombre}");
+        Console.WriteLine("¿Quien atacara?");
+    }
+    public static void TurnoDeDefensa(Personaje jefe)
+    {
+        Console.WriteLine($"¿Quien intentara recibir el ataque de {jefe.Nombre}?");
+    }
+
+    public static void MensajeDeNuevoMiembro(Personaje heroe)
+    {
+        Console.WriteLine($"{heroe.Nombre} se ha unido al grupo.");
+    }
+
+    public static Personaje SeleccionarHeroe(List<Personaje> grupoDeHeroes)
+    {
+        for (int i = 1; i <= grupoDeHeroes.Count; i++)
+        {
+            Console.WriteLine($"{i}. {grupoDeHeroes[i - 1].Nombre}");
+        }
+        return grupoDeHeroes[SeleccionDeOpcion(1, grupoDeHeroes.Count)];
+    }
+
+    public static bool ObtenerConfirmacion(string mensaje)
+    {
+        string? readResult;
+        string respuesta = "";
+        Console.WriteLine(mensaje);
+        Console.WriteLine("(y/n)");
         do
         {
-            Console.WriteLine("Selecciona el jefe que desees enfrentar:");
-            Console.WriteLine("1. La Antigua Gorgona");
-            Console.WriteLine("2. El Señor de los Gigantes");
-            Console.WriteLine("3. El Renacido Rey del Hierro");
             readResult = Console.ReadLine();
             if (readResult != null)
             {
-                bool validInput = int.TryParse(readResult.Trim(), out i);
-                if (validInput && i < 4 && i > 0)
+                respuesta = readResult.Trim().ToLower();
+                if (respuesta == "y" || respuesta == "n")
                 {
-                    return 1;
+                    break;
                 }
                 else
                 {
-                    Console.WriteLine("Por favor, elige una de las opciones.");
+                    Console.WriteLine("Por favor responda. \n(y/n)");
                 }
             }
         } while (true);
+        return respuesta switch
+        {
+            "y" => true,
+            "n" => false,
+            _ => throw new Exception("Error")
+        };
     }
-    public static int SeleccionarClaseDelHeroe()
-    {
-        int i = 0;
 
+    public static int SeleccionDeOpcion(int minimo, int maximo)
+    {
         do
         {
-            Console.WriteLine("Selecciona la clase del heroe");
-            Console.WriteLine("1. Barbaro");
-            Console.WriteLine("2. Hechicero");
-            Console.WriteLine("3. Paladin");
-            Console.WriteLine("4. Vaquero");
-            Console.WriteLine("5. Valquiria");
-
             string? readResult = Console.ReadLine();
             if (readResult != null)
             {
-                bool validInput = int.TryParse(readResult.Trim(), out i);
+                bool validInput = int.TryParse(readResult.Trim(), out int i);
                 if (validInput)
                 {
-                    if (i > 0 && i < 6)
+                    if (i >= minimo && i <= maximo)
                     {
                         return i;
                     }
                     else
                     {
-                        MensajePorInputIncorrecto();
+                        Console.WriteLine("Por favor, seleccione una de las opciones.");
                     }
                 }
                 else
                 {
-                    MensajePorInputIncorrecto();
+                    Console.WriteLine("Por favor, seleccione una de las opciones.");
                 }
             }
         } while (true);
     }
-    public static void MensajePorInputIncorrecto()
+
+    public static int SeleccionarClaseDelHeroe()
     {
-        Console.WriteLine("Por favor, seleccione una de las opciones.");
+        List<string> clasesDeHeroes = new List<string> { "Barbaro", "Hechicero", "Paladin", "Vaquero", "Valquiria" };
+        for (int j = 1; j < 6; j++)
+        {
+            Console.WriteLine($"{j}. {clasesDeHeroes[j - 1]}");
+        }
+        return SeleccionDeOpcion(1, clasesDeHeroes.Count);
     }
     public static void MensajeDeApertura()
     {

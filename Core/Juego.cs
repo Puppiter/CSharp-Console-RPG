@@ -20,48 +20,12 @@ public class Juego
         {
             List<Personaje> grupoDeHeroes = Creadora.CrearGrupoDeHeroes();
             Personaje jefe = Creadora.SeleccionarJefe();
-            Herramientas.LimpiezaDeConsola();
-            Console.WriteLine("Tu grupo de heroes se conforma por");
-            foreach (Personaje heroeActual in grupoDeHeroes)
-            {
-                Console.WriteLine(heroeActual.Nombre);
-            }
-            Console.WriteLine($"Y han de enfrentarse a {jefe.Nombre}");
-            Herramientas.LimpiezaDeConsola();
+            Interfaz.MostrarPartyYJefe(grupoDeHeroes, jefe);
             LoopDeJuego(grupoDeHeroes, jefe);
-        } while (JugarOtraVez());
+        } while (Interfaz.ObtenerConfirmacion("¿Deseas jugar otra vez?"));
     }
 
-    public bool JugarOtraVez()
-    {
-        string? readResult;
-        string respuesta = "";
-        Console.WriteLine("Esta partida ha terminado.");
-        Console.WriteLine("¿Deseas jugar otra vez?");
-        Console.WriteLine("(y/n)");
-        do
-        {
-            readResult = Console.ReadLine();
-            if (readResult != null)
-            {
-                respuesta = readResult.Trim().ToLower();
-                if (respuesta == "y" || respuesta == "n")
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Por favor responda. \n(y/n)");
-                }
-            }
-        } while (true);
-        return respuesta switch
-        {
-            "y" => true,
-            "n" => false,
-            _ => throw new Exception("Error")
-        };
-    }
+
     public void LoopDeJuego(List<Personaje> grupoDeHeroes, Personaje jefe)
     {
         do
@@ -95,48 +59,19 @@ public class Juego
     public void SeleccionarAccion(List<Personaje> grupoDeHeroes, Personaje jefe)
     {
 
-        Console.WriteLine($"Debes decidir que hacer en este turno, que heroe atacara, y cual intentara recibir el ataque de {jefe.Nombre}");
-
-        Console.WriteLine("¿Quien atacara?");
-        Ataque(SeleccionarHeroe(grupoDeHeroes), jefe);
-        Herramientas.LimpiezaDeConsola();
+        Interfaz.TurnoDeAtaque(jefe);
+        Ataque(Interfaz.SeleccionarHeroe(grupoDeHeroes), jefe);
         if (VerificarJefe(jefe))
         {
-            Console.WriteLine($"Pese a su poder {jefe.Nombre} ha caido ante el grupo de heroes.");
+            Interfaz.MensajeDeJefeDerrotado(jefe);
             return;
         }
-        Console.WriteLine($"¿Quien intentara recibir el ataque de {jefe.Nombre}?");
-        Ataque(jefe, SeleccionarHeroe(grupoDeHeroes));
-        Herramientas.LimpiezaDeConsola();
+        Interfaz.TurnoDeDefensa(jefe);
+        Ataque(jefe, Interfaz.SeleccionarHeroe(grupoDeHeroes));
         grupoDeHeroes = VerificarGrupoDeHeroes(grupoDeHeroes);
     }
 
-    public Personaje SeleccionarHeroe(List<Personaje> grupoDeHeroes)
-    {
-        int j;
-        string? readResult;
-        do
-        {
 
-            for (int i = grupoDeHeroes.Count - 1; i >= 0; i--)
-            {
-                Console.WriteLine($"{i}. {grupoDeHeroes[i].Nombre}");
-            }
-            readResult = Console.ReadLine();
-            if (readResult != null)
-            {
-                bool validInput = int.TryParse(readResult.Trim(), out j);
-                if (validInput && j < grupoDeHeroes.Count && j >= 0)
-                {
-                    return grupoDeHeroes[j];
-                }
-                else
-                {
-                    Console.WriteLine("Por favor seleccionar uno de los heroes.");
-                }
-            }
-        } while (true);
-    }
 
     private void Ataque(Personaje atacante, Personaje objetivo)
     {
@@ -160,14 +95,13 @@ public class Juego
         {
             if (grupoDeHeroes[i].Vida < 1)
             {
-                Console.WriteLine($"Oh no, {grupoDeHeroes[i].Nombre} ha caido derrotado.");
-                Herramientas.LimpiezaDeConsola();
+                Interfaz.MensajeDeHeroeMuerto(grupoDeHeroes[i]);
                 grupoDeHeroes.RemoveAt(i);
             }
         }
         if (grupoDeHeroes.Count == 0)
         {
-            Console.WriteLine("El grupo de heroes ha sido derrotado.");
+            Interfaz.MensajeDeGrupoDerrotado();
         }
         return grupoDeHeroes;
     }

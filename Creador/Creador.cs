@@ -28,8 +28,7 @@ public static class Creadora
         do
         {
             Personaje heroeNuevo = Creadora.CrearPersonaje();
-            Console.WriteLine($"{heroeNuevo.Nombre} se ha unido al grupo de heroes.");
-            Herramientas.LimpiezaDeConsola();
+            Interfaz.MensajeDeNuevoMiembro(heroeNuevo);
             grupoDeHeroes.Add(heroeNuevo);
             if (grupoDeHeroes.Count == 3)
             {
