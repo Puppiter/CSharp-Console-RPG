@@ -68,7 +68,7 @@ public class Juego
         }
         Interfaz.TurnoDeDefensa(jefe);
         Ataque(jefe, Interfaz.SeleccionarHeroe(grupoDeHeroes));
-        grupoDeHeroes = VerificarGrupoDeHeroes(grupoDeHeroes);
+        VerificarGrupoDeHeroes(grupoDeHeroes);
     }
 
 
@@ -89,7 +89,7 @@ public class Juego
         Interfaz.MensajeDeAtaque(dañoMagicoFinal, dañoFisicoFinal, atacante, objetivo, mensajeDeAtaque);
 
     }
-    public List<Personaje> VerificarGrupoDeHeroes(List<Personaje> grupoDeHeroes)
+    public void VerificarGrupoDeHeroes(List<Personaje> grupoDeHeroes)
     {
         for (int i = grupoDeHeroes.Count - 1; i >= 0; i--)
         {
@@ -103,7 +103,7 @@ public class Juego
         {
             Interfaz.MensajeDeGrupoDerrotado();
         }
-        return grupoDeHeroes;
+        return;
     }
 
 
