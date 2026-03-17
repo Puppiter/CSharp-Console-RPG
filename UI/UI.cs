@@ -6,7 +6,6 @@ using jueguito.Jefes;
 namespace jueguito.UI;
 
 
-
 public static class Interfaz
 {
 

@@ -9,13 +9,16 @@ using jueguito.UI;
 
 public class Juego
 {
-    public Juego()
+    private readonly IMessageService _Ui;
+    public Juego(IMessageService Ui)
     {
+        _Ui = Ui;
     }
 
     public void IniciarJuego()
     {
-        Interfaz.MensajeDeApertura();
+
+        _Ui.MensajeDeApertura();
         do
         {
             List<Personaje> grupoDeHeroes = Creadora.CrearGrupoDeHeroes();
@@ -86,8 +89,7 @@ public class Juego
         }
         int dañoMagicoFinal = objetivo.RecibirDañoMagico(dañoMagico);
         int dañoFisicoFinal = objetivo.RecibirDañoFisico(dañoFisico);
-        Interfaz.MensajeDeAtaque(dañoMagicoFinal, dañoFisicoFinal, atacante, objetivo, mensajeDeAtaque);
-
+        _Ui.MensajeDeAtaque(dañoMagicoFinal, dañoFisicoFinal, objetivo.Vida, atacante.Nombre, objetivo.Nombre, mensajeDeAtaque);
     }
     public void VerificarGrupoDeHeroes(List<Personaje> grupoDeHeroes)
     {
@@ -95,7 +97,7 @@ public class Juego
         {
             if (grupoDeHeroes[i].Vida < 1)
             {
-                Interfaz.MensajeDeHeroeMuerto(grupoDeHeroes[i]);
+                _Ui.MensajeDeHeroeMuerto(grupoDeHeroes[i].Nombre);
                 grupoDeHeroes.RemoveAt(i);
             }
         }
