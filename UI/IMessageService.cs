@@ -10,4 +10,19 @@ public interface IMessageService
     public void MensajeDeGrupoDerrotado();
 
     public void MensajeDeApertura();
+
+    public void MensajeDeJefeDerrotado();
+
+    public void MostrarPartyYJefe();
+
+    public void TurnoDeAtaque();
+
+    public void TurnoDeDefensa();
+
+    public void MostrarInformacionDeJefes();
+
+    public void MostrarInformacionDeHeroes();
+
+
+
 }

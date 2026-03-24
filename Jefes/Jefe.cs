@@ -1,34 +1,23 @@
 using jueguito.Personajes;
 using jueguito.Core;
+using jueguito.Jefes;
 namespace jueguito.Jefes;
 
-[InfoClase("La Antigua Gorgona", "Una monstruosidad de tiempos olvidados con serpientes por cabello. \nSu mirada es capaz convierte la carne en piedra y el valor en polvo.",400, 0, 40, 10, 60 )]
 public class JefeAntiguaGorgona : Personaje
 {
-    public JefeAntiguaGorgona() : base("La Antigua Gorgona")
+    public JefeAntiguaGorgona() : base("La Antigua Gorgona", InformacionDeClasesDeJefes.registroDeClasesDeJefes[ClaseDeJefe.AntiguaGorgona])
     {
-        Nombre = "La Antigua Gorgona";
-        DescripcionDeAtaque = "ataca: \n Las serpientes de su cabeza se lanzan hacia adelante, mordiendo con colmillos venenosos a";
-        DescripcionDeAtaqueCritico =  "¡Sus ojos brillan con un fulgor petrificante! Esta convirtiendo tu carne en piedra";
     }
 }
-[InfoClase("El señor de los Gigantes", "Un coloso que hace temblar la tierra con cada paso. \nSu fuerza bruta es capaz de aplastar montañas y héroes por igual.",400, 40, 0, 60, 0)]
 public class JefeSeñorDeLosGigantes : Personaje
 {
-    public JefeSeñorDeLosGigantes() : base("El Señor De Los Gigantes")
+    public JefeSeñorDeLosGigantes() : base("El Señor De Los Gigantes", InformacionDeClasesDeJefes.registroDeClasesDeJefes[ClaseDeJefe.SeñorDeLosGigantes])
     {
-        Nombre = "El Señor De Los Gigantes";
-        DescripcionDeAtaque = "ataca: \n Lanza un puñetazo torpe pero masivo que hace temblar el suelo bajo los pies de";
-        DescripcionDeAtaqueCritico =  "Ruge con furia, levanta su enorme pie y lo deja caer con todo el peso de una montaña sobre";
     }
 }
-[InfoClase("El Renacido Rey del Hierro", "Un tirano envuelto en una armadura fundida con su propia piel. \nHa vuelto de la muerte, más duro, ardiente y cruel que nunca.", 400, 20, 20, 35, 35)]
 public class JefeRenacidoReyDeHierro : Personaje
 {
-    public JefeRenacidoReyDeHierro() : base("El Renacido Rey del Hierro")
+    public JefeRenacidoReyDeHierro() : base("El Renacido Rey del Hierro", InformacionDeClasesDeJefes.registroDeClasesDeJefes[ClaseDeJefe.RenacidoReyDelHierro])
     {
-        Nombre = "El Renacido Rey del Hierro";
-        DescripcionDeAtaque = "Blande su espadón maldito en un arco letal, buscando partirte en dos";
-        DescripcionDeAtaqueCritico =  "¡Las grietas de su armadura estallan en llamas! ¡Embiste con una estocada de acero fundido a";
     }
 }

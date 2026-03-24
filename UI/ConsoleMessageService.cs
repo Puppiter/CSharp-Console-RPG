@@ -1,5 +1,5 @@
 namespace jueguito.UI;
-
+using jueguito.Personajes;
 public class ConsoleMessageService : IMessageService
 {
     public void MostrarMensaje(string mensaje)
@@ -31,5 +31,15 @@ public class ConsoleMessageService : IMessageService
         Console.WriteLine("El combate es simple, eliges a uno de los heroes para atacar, y a uno para intentar recibir el ataque del Jefe.");
         Console.WriteLine("Cada ataque, de heroes o del jefe tiene una pequeña probabilidad de dar un golpe critico.");
         Console.WriteLine("¡Comencemos!");
+    }
+
+    public void MostrarInformacionDeClases()
+    {
+        foreach(var (clase, estadisticas) in InformacionDeClases.RegistroDeClases)
+        {
+            Console.WriteLine($"Clase: {clase}");
+            Console.WriteLine($"Descripcion de Clase: {estadisticas.DescripcionDeClase}");
+            Console.WriteLine($"Estadisticas:\n Vida={estadisticas.Vida}\n Daño Fisico={estadisticas.DañoFisico}\n Daño magico={estadisticas.DañoMagico}\n Armadura={estadisticas.Armadura}\n Resistencia magica={estadisticas.ResistenciaMagica}");
+        }
     }
 }

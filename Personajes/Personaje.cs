@@ -1,10 +1,6 @@
 namespace jueguito.Personajes;
 using jueguito.Core;
-using System.Reflection;
-
-
-[InfoClase("", "",0 ,0, 0, 0, 0)]
-public class Personaje
+public abstract class Personaje
 {
     public string Nombre { get; set; }
     public int Vida { get; protected set; }
@@ -17,21 +13,16 @@ public class Personaje
 
     public string DescripcionDeAtaqueCritico { get; protected set; }
 
-    public Personaje(string nombre)
+    public Personaje(string nombre, IEstadisticasBase estadisticas)
     {
         Nombre = nombre;
-        var info = this.GetType().GetCustomAttribute<InfoClaseAttribute>();
-
-        if (info != null) 
-        {
-            this.Vida = info.Vida;
-            this.DañoFisico = info.DañoFisico;
-            this.DañoMagico = info.DañoMagico;
-            this.Armadura = info.Armadura;
-            this.ResistenciaMagica = info.ResistenciaMagica;
-        }
-        DescripcionDeAtaque = "Ataca a";
-        DescripcionDeAtaqueCritico = "Ataca Fatalmente a";
+        Vida = estadisticas.Vida;
+        DañoFisico = estadisticas.DañoFisico;
+        DañoMagico = estadisticas.DañoMagico;
+        Armadura = estadisticas.Armadura;
+        ResistenciaMagica = estadisticas.ResistenciaMagica;
+        DescripcionDeAtaque = estadisticas.DescripcionDeAtaque;
+        DescripcionDeAtaqueCritico = estadisticas.DescripcionDeAtaqueCritico;
     }
 
     public int RecibirDañoMagico(int cantidad)
