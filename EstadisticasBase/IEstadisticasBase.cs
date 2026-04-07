@@ -1,5 +1,8 @@
 public interface IEstadisticasBase
 {
+    string NombreDeClase {get;}
+
+    string DescripcionDeClase {get;}
     int Vida { get; }
     int DañoFisico { get; }
     int DañoMagico { get; }

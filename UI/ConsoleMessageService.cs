@@ -1,5 +1,7 @@
 namespace jueguito.UI;
+
 using jueguito.Personajes;
+using System.Linq;
 public class ConsoleMessageService : IMessageService
 {
     public void MostrarMensaje(string mensaje)
@@ -33,13 +35,53 @@ public class ConsoleMessageService : IMessageService
         Console.WriteLine("¡Comencemos!");
     }
 
-    public void MostrarInformacionDeClases()
+    public void MostrarInformacionDeClases(IEnumerable<IEstadisticasBase> listaDeEstadisticas)
     {
-        foreach(var (clase, estadisticas) in InformacionDeClases.RegistroDeClases)
+        foreach (var estadisticas in listaDeEstadisticas)
         {
-            Console.WriteLine($"Clase: {clase}");
+            Console.WriteLine($"Clase: {estadisticas.NombreDeClase}");
             Console.WriteLine($"Descripcion de Clase: {estadisticas.DescripcionDeClase}");
             Console.WriteLine($"Estadisticas:\n Vida={estadisticas.Vida}\n Daño Fisico={estadisticas.DañoFisico}\n Daño magico={estadisticas.DañoMagico}\n Armadura={estadisticas.Armadura}\n Resistencia magica={estadisticas.ResistenciaMagica}");
         }
+    }
+
+    public void MensajeDeJefeDerrotado(string NombreDelJefe)
+    {
+        Console.WriteLine($"Pese a su poder, {NombreDelJefe} ha caido derrotado");
+    }
+
+    public void TurnoDeAtaque(string nombreDelJefe)
+    {
+        Console.WriteLine($"Debes decidir que hacer en este turno, que heroe atacara, y cual intentara recibir el ataque de {nombreDelJefe}");
+        Console.WriteLine("¿Quien atacara?");
+    }
+
+    public void TurnoDeDefensa(string nombreDelJefe)
+    {
+        Console.WriteLine($"¿Quien intentara recibir el ataque de {nombreDelJefe}?");
+    }
+
+    public void MostrarInformacionDeJefes(IEnumerable<IEstadisticasBase> listaDeClasesDeJefes)
+    {
+        Console.WriteLine("Llego el momento de elegir el enemigo para esta aventura");
+        Console.WriteLine($"Tienes {listaDeClasesDeJefes.Count()} grandes jefes para elegir.");
+        MostrarInformacionDeClases(listaDeClasesDeJefes);
+    }
+
+        public void MostrarInformacionDeHeroes(IEnumerable<IEstadisticasBase> listaDeClasesDeHeroes)
+    {
+        Console.WriteLine("Llego el momento de elegir los heroes para esta aventura");
+        Console.WriteLine($"Tienes {listaDeClasesDeHeroes.Count()} clases de heroes para elegir.");
+        MostrarInformacionDeClases(listaDeClasesDeHeroes);
+    }
+
+        public void MostrarPartyYJefe(List<string> nombresDelGrupoDeHeroes,List<string> clasesDelGrupoDeHeroes, string nombreDelJefe)
+    {
+        Console.WriteLine("Tu grupo de heroes se conforma por");
+        for (int i = 0; i<nombresDelGrupoDeHeroes.Count; i++)
+        {
+            Console.WriteLine($"{nombresDelGrupoDeHeroes[i]} el {clasesDelGrupoDeHeroes[i]}");
+        }
+        Console.WriteLine($"Y han de enfrentarse a {nombreDelJefe}");
     }
 }
