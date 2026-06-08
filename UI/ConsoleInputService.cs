@@ -7,8 +7,5 @@ public class ConsoleInputService : IInputService
         string nombreDelHeroe = "";
         return nombreDelHeroe;
     }
-    public Type SeleccionarDeDiccionario(Dictionary<int, Type> opciones)
-    {
-        
-    }
+
 }

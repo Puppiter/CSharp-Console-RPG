@@ -6,7 +6,15 @@ public interface IInputService
 {
     public string SolicitarNombreDelHeroe();
 
-    public Type SeleccionarDeDiccionario(Dictionary<int, Type> opciones);
+    private int SeleccionarInt();
+
+    private bool SolicitarConfirmacion();
+
+    public SeleccionarClaseDelHeroe();
+
+    public SeleccionarJefe();
+
+    public 
 
     
 }
