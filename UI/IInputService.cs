@@ -6,15 +6,12 @@ public interface IInputService
 {
     public string SolicitarNombreDelHeroe();
 
-    private int SeleccionarInt();
+    public int SeleccionarInt();
 
-    private bool SolicitarConfirmacion();
+    public bool SolicitarConfirmacion();
 
     public SeleccionarClaseDelHeroe();
 
     public SeleccionarJefe();
-
-    public 
-
     
 }
