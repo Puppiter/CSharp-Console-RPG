@@ -8,6 +8,8 @@ public interface IMessageService
 
     public void MensajeDeHeroeMuerto(string nombreDelHeroe);
 
+    public void MensajeDeNuevoMiembro(string nombreDelHeroe);
+
     public void MensajeDeGrupoDerrotado();
 
     public void MensajeDeApertura();

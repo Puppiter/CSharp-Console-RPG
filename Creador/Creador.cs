@@ -7,10 +7,11 @@ namespace jueguito.Creador;
 
 public static class Creadora
 {
-    public static Personaje CrearPersonaje()
+    public static Personaje CrearPersonaje(IInputService _Is,IMessageService _Ms, IEnumerable<IEstadisticasBase> listaDeClasesDeHeroes)
     {
-        string nombreDelHeroe = Interfaz.SolicitarNombreDelHeroe();
-        int i = Interfaz.SeleccionarClaseDelHeroe();
+        
+        int i = _Is.SeleccionarClaseDelHeroe(listaDeClasesDeHeroes);
+        string nombreDelHeroe = _Is.SolicitarNombreDelHeroe();
         return i switch
         {
             1 => new Barbaro(nombreDelHeroe + " el barbaro"),
@@ -18,17 +19,17 @@ public static class Creadora
             3 => new Paladin(nombreDelHeroe + " el paladin"),
             4 => new Vaquero(nombreDelHeroe + " el vaquero"),
             5 => new Valquiria(nombreDelHeroe + " la valquiria"),
-            _ => throw new Exception("The Game, respiracion automatica desactivada")
+            _ => throw new Exception("Error al seleccionar clase del heroe.")
         };
     }
-    public static List<Personaje> CrearGrupoDeHeroes()
+    public static List<Personaje> CrearGrupoDeHeroes(IInputService _Is,IMessageService _Ms,  IEnumerable<IEstadisticasBase> listaDeClasesDeHeroes)
     {
         List<Personaje> grupoDeHeroes = new List<Personaje>();
-        Interfaz.DesplegarInformacionDeHeroes();
+        _Ms.MostrarInformacionDeClases(listaDeClasesDeHeroes);
         do
         {
-            Personaje heroeNuevo = Creadora.CrearPersonaje();
-            Interfaz.MensajeDeNuevoMiembro(heroeNuevo);
+            Personaje heroeNuevo = Creadora.CrearPersonaje(_Is, _Ms, listaDeClasesDeHeroes);
+            _Ms.MensajeDeNuevoMiembro(heroeNuevo.Nombre);
             grupoDeHeroes.Add(heroeNuevo);
             if (grupoDeHeroes.Count == 3)
             {
@@ -38,15 +39,16 @@ public static class Creadora
         return grupoDeHeroes;
 
     }
-    public static Personaje SeleccionarJefe()
+    public static Personaje SeleccionarJefe(IInputService _Is,IMessageService _Ms,  IEnumerable<IEstadisticasBase> listaDeClasesDeJefes)
     {
-        int i = Interfaz.SeleccionarClaseDelJefe();
+        _Ms.MostrarInformacionDeJefes(listaDeClasesDeJefes);
+        int i = _Is.SeleccionarClaseDelJefe(listaDeClasesDeJefes);
         return i switch
         {
             1 => new JefeAntiguaGorgona(),
             2 => new JefeSeñorDeLosGigantes(),
             3 => new JefeRenacidoReyDeHierro(),
-            _ => throw new Exception("The Game, respiracion automatica desactivada")
+            _ => throw new Exception("Error en la seleccion de la clase del jefe.")
         };
 
 

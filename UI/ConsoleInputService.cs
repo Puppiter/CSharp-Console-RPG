@@ -83,4 +83,26 @@ public class ConsoleInputService : IInputService
         };
     }
 
+    public int SeleccionarClaseDelHeroe(IEnumerable<IEstadisticasBase> listaDeEstadisticas)
+    {
+        Console.WriteLine("Debes seleccionar una clase de heroe.")
+        int i = 0;
+        foreach (var estadisticas in listaDeEstadisticas)
+            {
+                i ++;
+                Console.WriteLine($"{i}: {estadisticas.NombreDeClase}");           
+            }
+        return SeleccionarInt(i, 1);
+    }
+
+    public int SeleccionarClaseDelJefe(IEnumerable<IEstadisticasBase> listaDeEstadisticas)
+{
+    int i = 0;
+    foreach (var estadisticas in listaDeEstadisticas)
+    {
+        i++;
+        Console.WriteLine($"{i}: {estadisticas.NombreDeClase}");           
+    }
+    return SeleccionarInt(i, 1);
+}
 }  

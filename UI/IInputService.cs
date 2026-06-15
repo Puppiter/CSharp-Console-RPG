@@ -6,12 +6,12 @@ public interface IInputService
 {
     public string SolicitarNombreDelHeroe();
 
-    public int SeleccionarInt();
+    public int SeleccionarInt(int maximo, int minimo);
 
-    public bool SolicitarConfirmacion();
+    public bool SolicitarConfirmacion(string mensaje);
 
-    public SeleccionarClaseDelHeroe();
+    public int SeleccionarClaseDelHeroe(IEnumerable<IEstadisticasBase> listaDeEstadisticas);
 
-    public SeleccionarJefe();
+    public int SeleccionarClaseDelJefe(IEnumerable<IEstadisticasBase> listaDeEstadisticas);
     
 }

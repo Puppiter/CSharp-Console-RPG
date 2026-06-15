@@ -26,6 +26,11 @@ public class ConsoleMessageService : IMessageService
         Console.WriteLine("Pese a sus esfuerzos, los heroes han sido derrotados.");
     }
 
+    public void MensajeDeNuevoMiembro(string nombreDelHeroe)
+    {
+        Console.WriteLine($"{nombreDelHeroe} se ha unido al grupo!");
+    }
+
     public void MensajeDeApertura()
     {
         Console.WriteLine("Bienvenido al Juego, en este juego crearas un grupo de 3 heroes para enfrentarte a uno de los temibles jefes.");
